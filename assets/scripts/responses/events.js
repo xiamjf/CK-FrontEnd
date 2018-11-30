@@ -1,97 +1,74 @@
 'use strict'
 
-'use strict'
-
 const getFormFields = require(`../../../lib/get-form-fields`)
 
 const api = require('./api')
 const ui = require('./ui')
 
-const onCreateExample = function (event) {
+const onIndexResponses = function (event) {
   event.preventDefault()
-  console.log('onCreateExample ran!')
-
-  const data = getFormFields(event.target)
-  api.create(data)
-    .then(ui.onCreateSuccess)
-    .catch(ui.onCreateFailure)
-}
-
-const onIndexExamples = function (event) {
-  event.preventDefault()
-  console.log('onIndexExamples ran!')
 
   api.index()
     .then(ui.onIndexSuccess)
     .catch(ui.onIndexFailure)
 }
 
-const onShowExample = function (event) {
+const onShowResponse = function (event) {
   event.preventDefault()
-  console.log('onShowExample ran!')
+  // console.log('onShowExample ran!')
 
   const data = getFormFields(event.target)
-  const example = data.example
+  const response = data.response
 
-  if (example.id.length !== 0) {
-    api.show(example)
+  if (response.id.length !== 0) {
+    api.show(response)
       .then(ui.onShowSuccess)
       .catch(ui.onShowFailure)
   } else {
-    $('#message').html('<p>Please provide an example id!</p>')
+    $('#message').html('<p>Please provide a question id!</p>')
     $('#message').css('background-color', 'red')
-    console.log('Please enter an example id!')
+    console.log('Please enter a question id!')
   }
 }
 
-const onDeleteExample = function (event) {
+const onGetResponse = function(event) {
+
+  // prevent default submit action
   event.preventDefault()
-  console.log('onDeleteExample ran!')
 
-  const data = getFormFields(event.target)
-  const example = data.example
+  // make API call
+  api.index()
 
-  if (example.id.length !== 0) {
-    api.destroy(example.id)
-      .then(ui.onDeleteSuccess)
-      .catch(ui.onDeleteFailure)
-  } else {
-    $('#message').html('<p>Please provide an example id!</p>')
-    $('#message').css('background-color', 'red')
-    console.log('Please provide an example id!')
-  }
+  // if API call is successful then
+  .then(ui.onIndexSuccess)
+
+  // if API call fails then
+  .catch(ui.onError)
+
 }
 
-const onUpdateExample = function (event) {
+const onGetResponse = function (event) {
   event.preventDefault()
-  console.log('onUpdateExample ran!')
 
+  // create js object from user form data
   const data = getFormFields(event.target)
-  const example = data.example
 
-  if (example.text === '') {
-    $('#message').html('<p>Text is required</p>')
-    $('#message').css('background-color', 'red')
-    console.log('Text is required!')
-    return false
-  }
-  if (example.id.length !== 0) {
-    api.update(data)
-      .then(ui.onUpdateSuccess)
-      .catch(ui.onUpdateFailure)
+  // input validation
+  if (data.response.id === '') {
+    $('#content').html('<p>ID is required</p>')
+
   } else {
-    $('#message').html('<p>Please provide an example id!</p>')
-    $('#message').css('background-color', 'red')
-    console.log('Please provide an example id!')
+
+    // make API call with data
+    api.show(data)
+      .then(ui.onShowSuccess)
+      .catch(ui.onError)
   }
-}
+ }
 
 const addHandlers = () => {
-  $('#example-create').on('submit', onCreateExample)
-  $('#example-index').on('submit', onIndexExamples)
-  $('#example-show').on('submit', onShowExample)
-  $('#example-delete').on('submit', onDeleteExample)
-  $('#example-update').on('submit', onUpdateExample)
+  $('#response-index').on('submit', onIndexResponses)
+  $('#response-show').on('submit', onShowResponse)
 }
 
 module.exports = {

@@ -1,84 +1,62 @@
 'use strict'
 
-const onCreateSuccess = function (data) {
-  $('#message').text('Example successfully created')
-  $('#message').removeClass()
-  $('#message').addClass('success')
-  console.log('onCreateSuccess ran. Data is :', data)
-}
-
-const onCreateFailure = function (error) {
-  $('#message').text('Error on creating example')
-  $('#message').removeClass()
-  $('#message').addClass('failure')
-  console.error('onCreateFailure ran. Error is :', error)
-}
-
 const onIndexSuccess = function (data) {
-  $('#message').text('All Examples successfully received')
+  $('#message').text('All Responses successfully received')
   $('#message').removeClass()
   $('#message').addClass('success')
-  console.log('onIndexSuccess ran. Data is :', data.examples)
+  // console.log('onIndexSuccess ran. Data is :', data.examples)
+  $('#content').html('')
+
+  // loop through API response data
+  const responses = data.responses
+  responses.forEach(response => {
+    const responseHTML = (`
+      <h4>Prompt: ${response.question.prompt}</h4>
+      <p>ID: ${response.question.id}</p>
+      <h4>Prompt: ${response.prompt}</h4>
+      <p>ID: ${response.id}</p>
+      <br>
+    `)
+
+    $('#content').append(responseHTML)
+  })
 }
 
 const onIndexFailure = function (error) {
-  $('#message').text('Error on getting examples')
+  $('#message').text('Error on getting questions')
   $('#message').removeClass()
   $('#message').addClass('failure')
   console.error('onIndexFailure ran. Error is :', error)
 }
 
 const onShowSuccess = function (data) {
-  $('#message').text('One Example successfully received')
+  $('#message').text('One Response successfully received')
   $('#message').removeClass()
   $('#message').addClass('success')
   console.log('onCreateSuccess ran. Data is :', data)
+  const response = data.response
+  const response HTML = (`
+    <h4>Prompt: ${response.question.prompt}</h4>
+    <h4>Prompt: ${response.prompt}</h4>
+    <br>
+  `)
+
+  $('#content').html(responseHTML)
+
+  // reset form
+  $('#response-show').trigger('reset')
 }
 
 const onShowFailure = function (error) {
-  $('#message').text('Error on getting example')
+  $('#message').text('Error on getting response')
   $('#message').removeClass()
   $('#message').addClass('failure')
   console.error('onShowFailure ran. Error is :', error)
 }
 
-const onDestroySuccess = function () {
-  $('#message').text('Example successfully deleted')
-  $('#message').removeClass()
-  $('#message').addClass('success')
-  console.log('Example successfully deleted')
-}
-
-const onDestroyFailure = function (error) {
-  $('#message').text('Error on deleting example')
-  $('#message').removeClass()
-  $('#message').addClass('failure')
-  console.error('onDestroyFailure ran. Error is :', error)
-}
-
-const onUpdateSuccess = function () {
-  $('#message').text('Example successfully updated')
-  $('#message').removeClass()
-  $('#message').addClass('success')
-  console.log('Example successfully updated')
-}
-
-const onUpdateFailure = function (error) {
-  $('#message').text('Error on updating example')
-  $('#message').removeClass()
-  $('#message').addClass('failure')
-  console.error('onUpdateFailure ran. Error is :', error)
-}
-
 module.exports = {
-  onCreateSuccess,
-  onCreateFailure,
   onIndexSuccess,
   onIndexFailure,
   onShowSuccess,
-  onShowFailure,
-  onDestroySuccess,
-  onDestroyFailure,
-  onUpdateSuccess,
-  onUpdateFailure
+  onShowFailure
 }
