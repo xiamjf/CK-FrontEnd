@@ -1,25 +1,12 @@
 'use strict'
 
-'use strict'
-
 const getFormFields = require(`../../../lib/get-form-fields`)
 
 const api = require('./api')
 const ui = require('./ui')
 
-// const onCreateExample = function (event) {
-//   event.preventDefault()
-//   console.log('onCreateExample ran!')
-//
-//   const data = getFormFields(event.target)
-//   api.create(data)
-//     .then(ui.onCreateSuccess)
-//     .catch(ui.onCreateFailure)
-// }
-
 const onIndexQuestions = function (event) {
   event.preventDefault()
-  // console.log('onIndexExamples ran!')
 
   api.index()
     .then(ui.onIndexSuccess)
@@ -85,6 +72,40 @@ const onShowQuestion = function (event) {
 //     console.log('Please provide an example id!')
 //   }
 // }
+const onGetQuestions = function(event){
+
+  // prevent default submit action
+  event.preventDefault()
+
+  // make API call
+  api.index()
+
+  // if API call is successful then
+  .then(ui.onIndexSuccess)
+
+  // if API call fails then
+  .catch(ui.onError)
+
+}
+
+const onGetQuestion = function (event) {
+  event.preventDefault()
+
+  // create js object from user form data
+  const data = getFormFields(event.target)
+
+  // input validation
+  if (data.question.id === '') {
+    $('#content').html('<p>ID is required</p>')
+
+  } else {
+
+    // make API call with data
+    api.show(data)
+      .then(ui.onShowSuccess)
+      .catch(ui.onError)
+  }
+ }
 
 const addHandlers = () => {
   // $('#example-create').on('submit', onCreateExample)

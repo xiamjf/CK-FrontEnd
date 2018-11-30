@@ -1,24 +1,23 @@
 'use strict'
 
-// const onCreateSuccess = function (data) {
-//   $('#message').text('Example successfully created')
-//   $('#message').removeClass()
-//   $('#message').addClass('success')
-//   console.log('onCreateSuccess ran. Data is :', data)
-// }
-//
-// const onCreateFailure = function (error) {
-//   $('#message').text('Error on creating example')
-//   $('#message').removeClass()
-//   $('#message').addClass('failure')
-//   console.error('onCreateFailure ran. Error is :', error)
-// }
-
-const onIndexSuccess = function (data) {
+const onIndexSuccess = function (response) {
   $('#message').text('All Questions successfully received')
   $('#message').removeClass()
   $('#message').addClass('success')
   // console.log('onIndexSuccess ran. Data is :', data.examples)
+  $('#content').html('')
+
+  // loop through API response data
+  const questions = response.questions
+  questions.forEach(question => {
+    const questionHTML = (`
+      <h4>Prompt: ${question.prompt}</h4>
+      <p>ID: ${question.id}</p>
+      <br>
+    `)
+
+    $('#content').append(questionHTML)
+  })
 }
 
 const onIndexFailure = function (error) {
@@ -28,11 +27,21 @@ const onIndexFailure = function (error) {
   console.error('onIndexFailure ran. Error is :', error)
 }
 
-const onShowSuccess = function (data) {
+const onShowSuccess = function (response) {
   $('#message').text('One Question successfully received')
   $('#message').removeClass()
   $('#message').addClass('success')
-  console.log('onCreateSuccess ran. Data is :', data)
+  console.log('onCreateSuccess ran. Data is :', response)
+  const question = response.question
+  const questionHTML = (`
+    <h4>Prompt: ${question.prompt}</h4>
+    <br>
+  `)
+
+  $('#content').html(questionHTML)
+
+  // reset form
+  $('#question-show').trigger('reset')
 }
 
 const onShowFailure = function (error) {
@@ -41,34 +50,6 @@ const onShowFailure = function (error) {
   $('#message').addClass('failure')
   console.error('onShowFailure ran. Error is :', error)
 }
-
-// const onDestroySuccess = function () {
-//   $('#message').text('Example successfully deleted')
-//   $('#message').removeClass()
-//   $('#message').addClass('success')
-//   console.log('Example successfully deleted')
-// }
-//
-// const onDestroyFailure = function (error) {
-//   $('#message').text('Error on deleting example')
-//   $('#message').removeClass()
-//   $('#message').addClass('failure')
-//   console.error('onDestroyFailure ran. Error is :', error)
-// }
-//
-// const onUpdateSuccess = function () {
-//   $('#message').text('Example successfully updated')
-//   $('#message').removeClass()
-//   $('#message').addClass('success')
-//   console.log('Example successfully updated')
-// }
-//
-// const onUpdateFailure = function (error) {
-//   $('#message').text('Error on updating example')
-//   $('#message').removeClass()
-//   $('#message').addClass('failure')
-//   console.error('onUpdateFailure ran. Error is :', error)
-// }
 
 module.exports = {
   onIndexSuccess,
