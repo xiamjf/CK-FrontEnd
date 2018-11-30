@@ -1,1 +1,24 @@
 @import '~bootstrap/scss/bootstrap';
+
+$black: #000;
+$green: #080;
+$red: #f00;
+$background-color: #a3b4d1;
+
+.border {
+  border: 3px solid $green;
+  margin: 20px;
+  padding: 20px;
+}
+
+.success {
+  background-color: $green;
+}
+
+.failure {
+  background-color: $red;
+}
+
+body {
+  background-color: $background-color;
+}

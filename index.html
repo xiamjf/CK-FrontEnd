@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Community</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -12,6 +12,132 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Browser Template</h1>
+      <h1>Community Kids</h1>
+      <div>
+        <h5><strong>Martin Luther King, Jr had a Dream</strong></h5>
+        <h6>Are we living it?</h6>
+      </div>
+      <div class="NVLeader 1">
+        <!-- change images on button click for now  -->
+      </div>
+      <div class="NVLeader 2 d-none">
+        <!-- change images on button click for now  -->
+      </div>
+      <div class="NVLeader 3 d-none">
+        <!-- change images on button click for now  -->
+      </div>
+      <div class="NVLeader 4 d-none">
+        <!-- change images on button click for now  -->
+      </div>
+      <div class="NVLeader 5 d-none">
+        <!-- change images on button click for now  -->
+      </div>
+      <div class="NVLeader 6 d-none">
+        <!-- change images on button click for now  -->
+      </div>
+      <div class="NVLeader 7 d-none">
+        <!-- change images on button click for now  -->
+      </div>
+          <form id="sign-up" class="border">
+            <fieldset>
+              <legend>Sign up here:</legend>
+              <input type="text" name="credentials[email]" placeholder="Email">
+              <input type="password" name="credentials[password]" placeholder="Password">
+              <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+              <input type="text" name="credentials[first_name]" placeholder="First Name">
+              <input type="text" name="credentials[last_name]" placeholder="Last Name">
+              <input type="text" name="credentials[grade]" placeholder="What Grade Are You In?">
+              <input type="text" name="credentials[school]" placeholder="School">
+              <input type="submit" value="Sign up!">
+            </fieldset>
+          </form>
+
+          <form id="sign-in" class="border">
+            <fieldset>
+              <legend>Sign in here:</legend>
+              <input type="text" name="credentials[email]" placeholder="Email">
+              <input type="password" name="credentials[password]" placeholder="Password">
+              <input type="submit" value="Sign in!">
+            </fieldset>
+          </form>
+
+          <div id="message">
+          </div>
+
+          <form id="question-index" class="border d-none">
+            <fieldset>
+              <legend>Get All Questions</legend>
+              <input type="submit" value="Get All Questions">
+            </fieldset>
+          </form>
+          <div id="index-questions">
+          </div>
+
+          <form id="response-index" class="border d-none">
+            <fieldset>
+              <legend>Get All Responses to Questions</legend>
+              <!-- is this going to give me all responses to all questions or just one? -->
+              <input type="submit" value="Get All Responses">
+            </fieldset>
+          </form>
+
+          <form id="response-create" class="border d-none">
+            <fieldset>
+              <legend>Create a Response!</legend>
+              <!-- This will create a question.response -->
+              <input type="text" name="Response" placeholder="What was your answer?">
+              <input type="submit" value="Create Response">
+            </fieldset>
+          </form>
+
+
+          <form id="question-show" class="border d-none">
+            <fieldset>
+              <legend>Get One Question</legend>
+              <input type="text" name="question[id]" placeholder="Enter Question ID">
+              <input type="submit">
+            </fieldset>
+          </form>
+
+          <form id="response-show" class="border d-none">
+            <fieldset>
+              <legend>Get One Response to a Question</legend>
+              <input type="text" name="response[id]" placeholder="Enter Response ID">
+              <input type="submit">
+            </fieldset>
+          </form>
+
+          <form id="response-delete" class="border d-none">
+            <fieldset>
+              <legend>Delete One Response to a Question</legend>
+              <input type="text" name="response[id]" placeholder="Enter Response ID">
+              <input type="submit" value="Delete Response">
+            </fieldset>
+          </form>
+
+          <form id="response-update" class="border d-none">
+            <fieldset>
+              <legend>Change A Response</legend>
+              <input type="text" name="response[id]" placeholder="Enter Response ID">
+              <input type="text" name="response[text]" placeholder="Enter Response Text">
+              <input type="submit" value="Update Response">
+            </fieldset>
+          </form>
+
+          <form id="sign-out" class="border d-none">
+            <fieldset>
+              <legend>See you later! (Sign out)</legend>
+              <input type="submit" value="Sign out!">
+            </fieldset>
+          </form>
+
+          <form id="change-password" class="border d-none">
+            <fieldset>
+              <legend>Change your password here</legend>
+              <input type="password" name="passwords[old]" placeholder="Old Password">
+              <input type="password" name="passwords[new]" placeholder="New Password">
+              <input type="submit" value="Change Password!">
+            </fieldset>
+          </form>
     </body>
 </html>
