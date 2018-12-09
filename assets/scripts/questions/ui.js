@@ -19,6 +19,18 @@ const onIndexSuccess = function (data) {
   $('#message').removeClass()
   $('#message').addClass('success')
   // console.log('onIndexSuccess ran. Data is :', data.examples)
+  // look up jquery-ajax-crud training
+  $('#content').removeClass()
+  $('#content').addClass('border')
+  $('#content').html('')
+  data.questions.forEach(question => {
+    const questionHTML = (`
+        <h4>Prompt: ${question.prompt}</h4>
+        <p>ID: ${question.id}</p>
+        <br>
+      `)
+    $('#content').append(questionHTML)
+  })
 }
 
 const onIndexFailure = function (error) {
