@@ -7,17 +7,24 @@ const getFormFields = require(`../../../lib/get-form-fields`)
 const api = require('./api')
 const ui = require('./ui')
 
-const onCreateExample = function (event) {
+const onCreateResponse = function (event) {
   event.preventDefault()
-  console.log('onCreateExample ran!')
-
-  const data = getFormFields(event.target)
-  api.create(data)
-    .then(ui.onCreateSuccess)
-    .catch(ui.onCreateFailure)
+  // console.log('onCreateResponse ran!')
+  const questionId = document.getElementById('question-id').value
+  const responsePrompt = document.getElementById('response-prompt').value.toString()
+  const data = [questionId, responsePrompt]
+  if (questionId === '') {
+    $('#response-box').html('<p>Question ID is required</p>')
+  } else if (responsePrompt === '') {
+    $('#response-box').html('<p>Prompt is required</p>')
+  } else {
+    api.create(data)
+      .then(ui.onCreateSuccess)
+      .catch(ui.onCreateFailure)
+  }
 }
 
-const onIndexExamples = function (event) {
+const onIndexResponse = function (event) {
   event.preventDefault()
   console.log('onIndexExamples ran!')
 
@@ -26,7 +33,7 @@ const onIndexExamples = function (event) {
     .catch(ui.onIndexFailure)
 }
 
-const onShowExample = function (event) {
+const onShowResponse = function (event) {
   event.preventDefault()
   console.log('onShowExample ran!')
 
@@ -44,7 +51,7 @@ const onShowExample = function (event) {
   }
 }
 
-const onDeleteExample = function (event) {
+const onDeleteResponse = function (event) {
   event.preventDefault()
   console.log('onDeleteExample ran!')
 
@@ -62,7 +69,7 @@ const onDeleteExample = function (event) {
   }
 }
 
-const onUpdateExample = function (event) {
+const onUpdateResponse = function (event) {
   event.preventDefault()
   console.log('onUpdateExample ran!')
 
@@ -87,11 +94,11 @@ const onUpdateExample = function (event) {
 }
 
 const addHandlers = () => {
-  $('#example-create').on('submit', onCreateExample)
-  $('#example-index').on('submit', onIndexExamples)
-  $('#example-show').on('submit', onShowExample)
-  $('#example-delete').on('submit', onDeleteExample)
-  $('#example-update').on('submit', onUpdateExample)
+  $('#response-create').on('submit', onCreateResponse)
+  $('#response-index').on('submit', onIndexResponse)
+  $('#response-show').on('submit', onShowResponse)
+  $('#response-delete').on('submit', onDeleteResponse)
+  $('#response-update').on('submit', onUpdateResponse)
 }
 
 module.exports = {

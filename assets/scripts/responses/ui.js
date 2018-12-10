@@ -1,10 +1,13 @@
 'use strict'
 
 const onCreateSuccess = function (data) {
-  $('#message').text('Example successfully created')
+  $('#message').text('Response successfully created')
   $('#message').removeClass()
   $('#message').addClass('success')
   console.log('onCreateSuccess ran. Data is :', data)
+  $('#content').html('You created a new response!')
+  // reset form
+  $('#response-create').trigger('reset')
 }
 
 const onCreateFailure = function (error) {

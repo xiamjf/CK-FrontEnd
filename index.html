@@ -73,6 +73,18 @@
           <div id="content" class="border d-none">
           </div>
 
+          <form id="response-create" class="border d-none">
+            <fieldset>
+              <legend>Create a Response!</legend>
+              <!-- This will create a question.response -->
+              <input id="question-id" type="text" name="Question ID" placeholder="What is the question ID?">
+              <input id="response-prompt" type="text" name="Response" placeholder="What is your answer?">
+              <input type="submit" value="Create Response">
+            </fieldset>
+          </form>
+          <div id="response-error" class="border d-none">
+          </div>
+
           <form id="response-index" class="border d-none">
             <fieldset>
               <legend>Get All Responses to Questions</legend>
@@ -80,16 +92,6 @@
               <input type="submit" value="Get All Responses">
             </fieldset>
           </form>
-
-          <form id="response-create" class="border d-none">
-            <fieldset>
-              <legend>Create a Response!</legend>
-              <!-- This will create a question.response -->
-              <input type="text" name="Response" placeholder="What was your answer?">
-              <input type="submit" value="Create Response">
-            </fieldset>
-          </form>
-
 
           <form id="question-show" class="border d-none">
             <fieldset>

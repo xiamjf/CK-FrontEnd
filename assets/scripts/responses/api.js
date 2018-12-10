@@ -4,14 +4,14 @@ const config = require('../config')
 const store = require('../store')
 
 const create = function (data) {
-  console.log('data: ', data)
+  console.log(data)
   return $.ajax({
-    url: config.apiUrl + '/examples',
+    url: config.apiUrl + '/user_questions',
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
-    data
+    data: '{user_question: {user_id: ' + store.user.id + ', question_id: ' + data[0] + ', response: ' + data[1] + '}}'
     // data: data
   })
 }
